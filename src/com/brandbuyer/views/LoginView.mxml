@@ -7,9 +7,17 @@
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
+			import com.adobe.cairngorm.control.CairngormEventDispatcher;
+			import com.brandbuyer.event.ForgotPasswordEvent;
 			private function onLoginSuccess():void {
 				 navigator.pushView(MainMenuView);
 			}
+			
+			protected function label1_clickHandler(event:MouseEvent):void
+			{
+				CairngormEventDispatcher.getInstance().dispatchEvent(new ForgotPasswordEvent("usman Ashraf","buyer brand"));
+			}
+			
 		]]>
 	</fx:Script>
 	<s:layout>
@@ -28,15 +36,15 @@
 			<s:Label text="BUYER APP LOGIN" fontSize="18"/>
 		</s:VGroup>
 		<s:TextInput width="95%" prompt="USERNAME"
-					 skinClass="com.app.skins.LoginTextInputSkin"/>
+					 skinClass="com.brandbuyer.skins.LoginTextInputSkin"/>
 		<s:TextInput width="95%" prompt="PASSWORD" displayAsPassword="true"
-					 skinClass="com.app.skins.LoginTextInputSkin"/>
+					 skinClass="com.brandbuyer.skins.LoginTextInputSkin"/>
 		<s:VGroup width="100%" horizontalAlign="center"
 				  gap="25">
 			<s:Button label="LOGIN" click="onLoginSuccess()"
-					  skinClass="com.app.skins.LoginButtonSkin" width="95%"
+					  skinClass="com.brandbuyer.skins.LoginButtonSkin" width="95%"
 					  height="40"/>
-			<s:Label text="Forgot Password"
+			<s:Label text="Forgot Password" click="label1_clickHandler(event)"
 					 textDecoration="underline" fontStyle="italic"
 					 fontSize="14"/>
 		</s:VGroup>

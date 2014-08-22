@@ -53,7 +53,7 @@
 					<s:layout>
 						<s:VerticalLayout/>
 					</s:layout>
-					<s:Button skinClass="com.app.skins.IconMenuButtonSkin"
+					<s:Button skinClass="com.brandbuyer.skins.IconMenuButtonSkin"
 							  width="100%"/>
 				</s:Group>
 			</s:Group>
@@ -65,7 +65,7 @@
 				<s:VerticalLayout paddingTop="30"/>
 			</s:layout>
 			<s:List id="menuList" change="onItemSelect()" width="100%" height="100%"
-					skinClass="com.app.skins.MenuListSkin">
+					skinClass="com.brandbuyer.skins.MenuListSkin">
 			</s:List>	
 		</s:Group>
 	</s:HGroup>
