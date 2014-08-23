@@ -17,6 +17,7 @@ package com.brandbuyer.event
 			super( EVENT_FORGOT_PASSWORD );
 			this.userName = userName;
 			this.email = email;
+			trace("custom event");
 		}
      	//☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻
 		override public function clone() : Event

@@ -9,13 +9,15 @@
 		<![CDATA[
 			import com.adobe.cairngorm.control.CairngormEventDispatcher;
 			import com.brandbuyer.event.ForgotPasswordEvent;
+			import com.brandbuyer.network.Network;
 			private function onLoginSuccess():void {
-				 navigator.pushView(MainMenuView);
+				Network.call_API(this,"http://smarttees.biz/build/products.php",null,"post");
+				//navigator.pushView(MainMenuView);
 			}
 			
 			protected function label1_clickHandler(event:MouseEvent):void
 			{
-				CairngormEventDispatcher.getInstance().dispatchEvent(new ForgotPasswordEvent("usman Ashraf","buyer brand"));
+				//CairngormEventDispatcher.getInstance().dispatchEvent(new ForgotPasswordEvent("usman Ashraf","buyer brand"));
 			}
 			
 		]]>

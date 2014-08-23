@@ -16,7 +16,7 @@
 			
 			private function onCreComp():void {
 				menuList.dataProvider = loadData();
-				menuList.selectedIndex = 1;
+				menuList.selectedIndex = 0;
 			}
 			
 			private function loadData():ArrayCollection {
@@ -31,8 +31,20 @@
 			
 			private function onItemSelect():void {
 				switch(menuList.selectedIndex){
+					case 0:{
+						//navigator.pushView(BrandsView);
+						break;
+					}						
 					case 1:{
 						navigator.pushView(BrandsView);
+						break;
+					}
+					case 2:{
+						//navigator.pushView(BrandsView);
+						break;
+					}
+					case 3:{
+						//navigator.pushView(BrandsView);
 						break;
 					}
 

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<business:ServiceLocator xmlns:mx="http://www.adobe.com/2006/mxml"
-						 xmlns:business="com.adobe.cairngorm.business.*">
-	
-	<mx:RemoteObject id="backendServiceRO"
-					 destination="backendServiceDelegate">
-	</mx:RemoteObject>
-	<!-- in destination write the Id of the destination that we write in remoting-config.xml -->
-</business:ServiceLocator>
