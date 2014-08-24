@@ -30,27 +30,33 @@
 			}
 			
 			private function onItemSelect():void {
-				switch(menuList.selectedIndex){
-					case 0:{
-						//navigator.pushView(BrandsView);
-						break;
-					}						
-					case 1:{
-						navigator.pushView(BrandsView);
-						break;
-					}
-					case 2:{
-						//navigator.pushView(BrandsView);
-						break;
-					}
-					case 3:{
-						//navigator.pushView(BrandsView);
-						break;
-					}
-
-					case 4:{
-						navigator.pushView(SettingsView);
-						break;
+				if(menuList.selectedItem) {
+					switch(menuList.selectedIndex){
+						case 0:
+						{
+							navigator.popView();
+							break;
+						}
+						case 1:
+						{
+							navigator.pushView(BrandsView);
+							break;
+						}
+						case 2:
+						{
+							navigator.pushView(ChatView);
+							break;
+						}	
+						case 4:
+						{
+							navigator.pushView(SettingsView);
+							break;
+						}
+						case 3:
+						{
+							navigator.pushView(ReservedProductsView);
+							break;
+						}
 					}
 				}
 			}  
@@ -76,7 +82,7 @@
 			<s:layout>
 				<s:VerticalLayout paddingTop="30"/>
 			</s:layout>
-			<s:List id="menuList" change="onItemSelect()" width="100%" height="100%"
+			<s:List id="menuList" click="onItemSelect()" width="100%" height="100%"
 					skinClass="com.brandbuyer.skins.MenuListSkin">
 			</s:List>	
 		</s:Group>

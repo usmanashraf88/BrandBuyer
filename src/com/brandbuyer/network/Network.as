@@ -17,7 +17,8 @@ package com.brandbuyer.network
 	public class Network
 	{
 		private static var objParent:DisplayObject;
-		public static function call_API(parentObj:DisplayObject,url:String,variables:URLVariables,method:String = "post"):void{
+		public static function call_API(parentObj:DisplayObject,url:String,
+										variables:URLVariables,method:String = "post"):void{
 			objParent  = parentObj;
 			CursorManager.setBusyCursor();
 			var myVariables:URLVariables = new URLVariables();
@@ -51,15 +52,11 @@ package com.brandbuyer.network
 		/*******************************************************************/ 
 		private static function uploadDesignedImgComplete(event:Event):void{
 			InformationBox.show(objParent,"Successful ",event.target.data);
-			/*if(event.target.data == 'Image upload sucessfull')
-			{
-				Alert.show('Image uploaded successfully!!!');
+			/*if(event.target.data == 'Image upload sucessfull'){
 				navigateToURL(new URLRequest('http://smarttees.biz/printing?get_cart_url=1'), "_self");
-			}else{
-				Alert.show('Successful case:   '+event.target.data);
 			}*/
 			CursorManager.removeBusyCursor();
 		}
-			
+		/*******************************************************************/ 					
 	}
 }

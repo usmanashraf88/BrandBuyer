@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+				   xmlns:s="library://ns.adobe.com/flex/spark"
+				   width="100%" xmlns:components="com.brandbuyer.views.components.*"
+				   click="group1_clickHandler(event)">
+	
+	<fx:Script>
+		<![CDATA[
+			protected function group1_clickHandler(event:MouseEvent):void
+			{
+				chatActions.visible = !chatActions.visible;
+			}
+		]]>
+	</fx:Script>
+	
+	<s:BorderContainer borderVisible="false" width="100%"
+					   height="100%">
+		<s:Group height="100%" width="100%">
+			<s:layout>
+				<s:HorizontalLayout verticalAlign="middle" paddingLeft="0"/>
+			</s:layout>
+			<!--<s:BorderContainer height="100%" width="2" 
+							   borderVisible="false"
+							   backgroundColor="0xCCCCCC"/>-->
+			<s:Group width="100%" height="100%">
+				<s:layout>
+					<s:VerticalLayout paddingTop="10"
+									  paddingBottom="10"/>
+				</s:layout>
+				<s:HGroup verticalAlign="middle">
+					<s:Label text="AMIT"/>
+					<s:Label text="2:07 PM" fontSize="10"/>	
+				</s:HGroup>
+				<s:RichText width="100%" text="Hello World To"
+							fontSize="11"/>
+			</s:Group>
+		</s:Group>
+	</s:BorderContainer>
+	<components:ChatMessageActionsMenu top="0" right="15" 
+									   id="chatActions"
+									   visible="false"/>
+</s:Group>

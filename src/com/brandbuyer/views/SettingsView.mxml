@@ -27,7 +27,7 @@
 			private function onItemSelect():void {
 				switch(menuList.selectedIndex){
 					case 4:{
-						navigator.pushView(SettingsView);
+						navigator.popView();
 						break;
 					}
 				}

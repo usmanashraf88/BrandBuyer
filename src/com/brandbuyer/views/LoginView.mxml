@@ -7,17 +7,48 @@
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
-			import com.adobe.cairngorm.control.CairngormEventDispatcher;
-			import com.brandbuyer.event.ForgotPasswordEvent;
+			import com.brandbuyer.model.LoginData;
+			import com.brandbuyer.network.CheckInternetAvailability;
 			import com.brandbuyer.network.Network;
-			private function onLoginSuccess():void {
-				Network.call_API(this,"http://smarttees.biz/build/products.php",null,"post");
+			import com.brandbuyer.util.Utils;
+			import com.brandbuyer.views.poups.AlertMsg;
+			import com.brandbuyer.views.poups.InformationBox;
+			private var loginData:LoginData;
+			
+			
+			private function login():void {
+				
+				if(CheckInternetAvailability.monitorConnection() == true){
+					var urlVariable:URLVariables  = new URLVariables;
+					urlVariable.username = txt_username.text;
+					urlVariable.password = txt_password.text;
+					urlVariable.type = "buyer";
+					Network.call_API(this,"http://smarttees.biz/build/products.php",urlVariable,"post");
+				}else{
+					InformationBox.show(this,"Internet Issue!","No internet available.");
+				}
+				loginData = new LoginData();
+				loginData = Utils.getLoginData();
+				if(loginData.userName ==  txt_username.text && loginData.status == Utils.SUCCESS.toLocaleUpperCase()){
+					navigator.pushView(MainMenuView);
+				}else if(loginData.userName !=  txt_username.text){
+					trace("Please give correct username !");
+				}else if(loginData.status != Utils.SUCCESS.toLocaleUpperCase()){
+					trace("Your status is failed !");
+				}
 				//navigator.pushView(MainMenuView);
 			}
 			
 			protected function label1_clickHandler(event:MouseEvent):void
 			{
-				//CairngormEventDispatcher.getInstance().dispatchEvent(new ForgotPasswordEvent("usman Ashraf","buyer brand"));
+				if(txt_username.text == ""){
+					InformationBox.show(this,"Email required!","Please enter your email.");
+				}else{
+					var urlVariable:URLVariables  = new URLVariables;
+					urlVariable.email = Utils.FORGOT_EMAIL;
+					Network.call_API(this,"http://smarttees.biz/build/products.php",urlVariable,"post");
+					
+				}
 			}
 			
 		]]>
@@ -38,17 +69,20 @@
 			<s:Label text="BUYER APP LOGIN" fontSize="18"/>
 		</s:VGroup>
 		<s:TextInput width="95%" prompt="USERNAME"
-					 skinClass="com.brandbuyer.skins.LoginTextInputSkin"/>
+					 skinClass="com.brandbuyer.skins.LoginTextInputSkin"
+					 id="txt_username"/>
 		<s:TextInput width="95%" prompt="PASSWORD" displayAsPassword="true"
-					 skinClass="com.brandbuyer.skins.LoginTextInputSkin"/>
+					 skinClass="com.brandbuyer.skins.LoginTextInputSkin"
+					 id="txt_password"/>
 		<s:VGroup width="100%" horizontalAlign="center"
 				  gap="25">
-			<s:Button label="LOGIN" click="onLoginSuccess()"
+			<s:Button label="LOGIN" click="login()"
 					  skinClass="com.brandbuyer.skins.LoginButtonSkin" width="95%"
 					  height="40"/>
-			<s:Label text="Forgot Password" click="label1_clickHandler(event)"
+			<s:Label text="Forgot Password"
 					 textDecoration="underline" fontStyle="italic"
 					 fontSize="14"/>
 		</s:VGroup>
 	</s:VGroup>
 </s:View>
+

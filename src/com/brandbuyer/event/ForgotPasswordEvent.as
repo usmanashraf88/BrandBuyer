@@ -1,12 +1,10 @@
 package com.brandbuyer.event
 {
-	import com.adobe.cairngorm.control.CairngormEvent;
-	
 	import flash.events.Event;
 	
 	import mx.controls.*;
 	//☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻☻
-	public class ForgotPasswordEvent extends CairngormEvent
+	public class ForgotPasswordEvent extends Event
 	{
 		public static var EVENT_FORGOT_PASSWORD : String = "forgotPasswordEvent";
 		public var userName:String = '';

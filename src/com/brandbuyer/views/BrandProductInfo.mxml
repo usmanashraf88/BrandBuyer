@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="ALEXENDER MCQUEEN"
+		skinClass="assets.images.CustomViewWithBackButtonAndSubTitleSkin"
+		actionBarVisible="false"
+		creationComplete="view1_creationCompleteHandler(event)">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import assets.images.CustomViewWithBackButtonAndSubTitleSkin;
+			
+			import mx.events.FlexEvent;
+			[Embed(source="assets/images/openmenulogo.jpg")]
+			[Bindable]
+			private var OPEN_MENU_LOGO:Class;
+			
+			protected function view1_creationCompleteHandler(event:FlexEvent):void
+			{
+				(this.skin as CustomViewWithBackButtonAndSubTitleSkin).subTitle.text = "FALL 2000 | WOMEN";
+				this.addEventListener('openMenuClicked',openMenuClickHandler);
+			}
+			
+			private function openMenuClickHandler(event:Event):void {
+				list_menu.visible = !list_menu.visible;
+			}
+			
+		]]>
+	</fx:Script>
+	<s:BorderContainer width="100%" height="1" borderVisible="false" backgroundColor="0x000000" top="0"/>
+	<s:Group width="100%" height="100%">
+		<s:layout>
+			<s:VerticalLayout gap="0" 
+							  paddingLeft="15" paddingRight="15"/>
+		</s:layout>
+		
+		<s:VGroup height="50%" width="100%" horizontalAlign="center"
+				  verticalAlign="middle"
+				  gap="0">
+			<s:Image source="{OPEN_MENU_LOGO}" 
+					 height="70%" width="45%"
+					 horizontalCenter="0"
+					 verticalCenter="0"/>
+			<s:TextInput width="100%" height="40" skinClass="com.brandbuyer.skins.ImageNameTextInputSkin"
+						 text="IMG_0123.png" textAlign="center"
+						 fontSize="10"
+						 focusAlpha="0"/>
+		</s:VGroup>
+		<s:BorderContainer width="100%" height="1" borderVisible="false" backgroundColor="0xCCCCCC"/>
+		<s:HGroup width="100%" verticalAlign="middle">
+			<s:Label text="CAPTION" fontSize="10" width="65"/>
+			<s:TextInput skinClass="com.brandbuyer.skins.ImageNameTextInputSkin" width="100%" fontSize="10" fontWeight="bold" text="Puffy Cost"
+						 height="40"/>
+		</s:HGroup>
+		<s:BorderContainer width="100%" height="1" borderVisible="false" backgroundColor="0xCCCCCC"/>
+		<s:HGroup width="100%" verticalAlign="middle">
+			<s:Label text="PRICE" fontSize="10" width="65"/>
+			<s:TextInput skinClass="com.brandbuyer.skins.ImageNameTextInputSkin" width="100%" fontSize="10" fontWeight="bold" text="HDK 200,000"
+						 height="40"/>
+		</s:HGroup>
+		<s:BorderContainer width="100%" height="1" borderVisible="false" backgroundColor="0xCCCCCC"/>
+		<s:HGroup width="100%" verticalAlign="middle">
+			<s:Label text="REMARKS" fontSize="10" width="65"/>
+			<s:TextInput skinClass="com.brandbuyer.skins.ImageNameTextInputSkin" width="100%" fontSize="10" fontWeight="bold" text="Sample Remarks"
+						 height="40"/>
+		</s:HGroup>
+		<s:HGroup width="100%" verticalAlign="middle">
+			<s:Label text="GROUPS" fontSize="10" width="65"/>
+			<s:TextInput skinClass="com.brandbuyer.skins.ImageNameTextInputSkin" width="100%" fontSize="10" fontWeight="bold" text="RTV"
+						 height="40"/>
+		</s:HGroup>
+		<s:BorderContainer width="100%" height="1" borderVisible="false" backgroundColor="0xCCCCCC"/>	
+	</s:Group>
+	<s:BorderContainer width="100%" height="100%" borderVisible="false" backgroundColor="0x000000"
+					   visible="{list_menu.visible}" backgroundAlpha="0.6"/>
+	<s:List width="100%" id="list_menu" visible="false"
+			skinClass="com.brandbuyer.skins.MenuListSkin">
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:String>MOVE</fx:String>
+				<fx:String>CHAT</fx:String>
+				<fx:String>DELETE</fx:String>
+				<fx:String>CLEAR</fx:String>
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:List>
+</s:View>
