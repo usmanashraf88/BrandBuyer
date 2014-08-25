@@ -7,42 +7,41 @@
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
+			import com.brandbuyer.DAO.DaoLogin;
 			import com.brandbuyer.model.LoginData;
 			import com.brandbuyer.network.CheckInternetAvailability;
 			import com.brandbuyer.network.Network;
 			import com.brandbuyer.util.Utils;
 			import com.brandbuyer.views.poups.AlertMsg;
 			import com.brandbuyer.views.poups.InformationBox;
-			private var loginData:LoginData;
 			
+			import flashx.textLayout.utils.NavigationUtil;
+			
+			import mx.utils.ObjectUtil;
+			
+			import spark.components.ViewNavigator;
+			import spark.core.NavigationUnit;
 			
 			private function login():void {
-				
+				var dl:DaoLogin = new DaoLogin();
+				Utils.loginUserName = txt_username.text;
 				if(CheckInternetAvailability.monitorConnection() == true){
 					var urlVariable:URLVariables  = new URLVariables;
 					urlVariable.username = txt_username.text;
 					urlVariable.password = txt_password.text;
 					urlVariable.type = "buyer";
-					Network.call_API(this,"http://smarttees.biz/build/products.php",urlVariable,"post");
+					//Network.call_API(this,"http://smarttees.biz/build/products.php",urlVariable,"post");
 				}else{
-					InformationBox.show(this,"Internet Issue!","No internet available.");
+					//InformationBox.show(this,"No internet available.");
 				}
-				loginData = new LoginData();
-				loginData = Utils.getLoginData();
-				if(loginData.userName ==  txt_username.text && loginData.status == Utils.SUCCESS.toLocaleUpperCase()){
-					navigator.pushView(MainMenuView);
-				}else if(loginData.userName !=  txt_username.text){
-					trace("Please give correct username !");
-				}else if(loginData.status != Utils.SUCCESS.toLocaleUpperCase()){
-					trace("Your status is failed !");
-				}
-				//navigator.pushView(MainMenuView);
+					dl.getLoginDataFromDB(Utils.loginUserName);
+				//getLoginDataFromDB();
 			}
 			
 			protected function label1_clickHandler(event:MouseEvent):void
 			{
 				if(txt_username.text == ""){
-					InformationBox.show(this,"Email required!","Please enter your email.");
+					InformationBox.show(this,"Please enter your email.");
 				}else{
 					var urlVariable:URLVariables  = new URLVariables;
 					urlVariable.email = Utils.FORGOT_EMAIL;
@@ -50,6 +49,9 @@
 					
 				}
 			}
+			
+			/*************************************************************************************************/
+					
 			
 		]]>
 	</fx:Script>

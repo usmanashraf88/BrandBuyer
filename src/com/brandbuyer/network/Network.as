@@ -41,17 +41,17 @@ package com.brandbuyer.network
 		}
 		/*******************************************************************/
 		private static function IOErrorHanlder(event:Event):void{
-			InformationBox.show(objParent,"IOError ",event.target.data);
+			InformationBox.show(objParent,event.target.data);
 			CursorManager.removeBusyCursor();
 		}
 		/*******************************************************************/ 
 		private static function SECURITY_ERRORHanlder(event:Event):void{
-			InformationBox.show(objParent,"SECURITY_ERROR ",event.target.data);
+			InformationBox.show(objParent,event.target.data);
 			CursorManager.removeBusyCursor();
 		}
 		/*******************************************************************/ 
 		private static function uploadDesignedImgComplete(event:Event):void{
-			InformationBox.show(objParent,"Successful ",event.target.data);
+			InformationBox.show(objParent,event.target.data);
 			/*if(event.target.data == 'Image upload sucessfull'){
 				navigateToURL(new URLRequest('http://smarttees.biz/printing?get_cart_url=1'), "_self");
 			}*/

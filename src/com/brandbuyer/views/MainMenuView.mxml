@@ -2,12 +2,14 @@
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		actionBarVisible="false" title="MainMenuView"
-		creationComplete="onCreComp()">
+		creationComplete="onCreComp()"
+		backgroundAlpha="0">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
+			import mx.core.FlexGlobals;
 			[Embed(source="assets/images/sidemenubackground.png")]
 			[Bindable]
 			private var BG:Class;
@@ -34,27 +36,31 @@
 					switch(menuList.selectedIndex){
 						case 0:
 						{
-							navigator.popView();
+							FlexGlobals.topLevelApplication.navigator.popView();
 							break;
 						}
 						case 1:
 						{
-							navigator.pushView(BrandsView);
+							FlexGlobals.topLevelApplication.navigator.popView();	
+							FlexGlobals.topLevelApplication.navigator.pushView(BrandsView);
 							break;
 						}
 						case 2:
 						{
-							navigator.pushView(ChatView);
+							FlexGlobals.topLevelApplication.navigator.popView();	
+							FlexGlobals.topLevelApplication.navigator.pushView(ChatView);
 							break;
 						}	
 						case 4:
 						{
-							navigator.pushView(SettingsView);
+							FlexGlobals.topLevelApplication.navigator.popView();	
+							FlexGlobals.topLevelApplication.navigator.pushView(SettingsView);
 							break;
 						}
 						case 3:
 						{
-							navigator.pushView(ReservedProductsView);
+							FlexGlobals.topLevelApplication.navigator.popView();	
+							FlexGlobals.topLevelApplication.navigator.pushView(ReservedProductsView);
 							break;
 						}
 					}
@@ -71,12 +77,12 @@
 					<s:layout>
 						<s:VerticalLayout/>
 					</s:layout>
-					<s:Button skinClass="com.brandbuyer.skins.IconMenuButtonSkin"
-							  width="100%"/>
 				</s:Group>
 			</s:Group>
 			<s:BorderContainer height="100%" width="100%" backgroundAlpha="0.7" backgroundColor="0x000000"
 							   borderVisible="false"/>
+			<s:Button skinClass="com.brandbuyer.skins.IconMenuButtonSkin"
+					  width="100%" click="FlexGlobals.topLevelApplication.navigator.popView()"/>
 		</s:Group>
 		<s:Group height="100%" width="100%">
 			<s:layout>
