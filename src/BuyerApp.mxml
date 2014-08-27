@@ -14,8 +14,6 @@
 			
 			protected function viewnavigatorapplication1_initializeHandler(event:FlexEvent):void
 			{
-				// TODO Auto-generated method stub
-				Test.getDummyBrandData();
 			}
 			
 		]]>

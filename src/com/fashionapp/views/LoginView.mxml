@@ -9,6 +9,8 @@
 	<fx:Script>
 		<![CDATA[
 			import com.fashionapp.DAO.DaoLogin;
+			import com.fashionapp.event.LoginClickEvent;
+			import com.fashionapp.model.LoginData;
 			import com.fashionapp.network.Network;
 			import com.fashionapp.util.Utils;
 			import com.fashionapp.views.poups.Alert;
@@ -22,25 +24,32 @@
 			}
 			private function listeners():void
 			{
-				
+				if(FlexGlobals.topLevelApplication.hasEventListener('LoginClickEvent')==false){
+					FlexGlobals.topLevelApplication.addEventListener('LoginClickEvent',loginClickEventListener,false,0,true);
+				}
 			}
-			
-			
+			private function loginClickEventListener(event:LoginClickEvent):void
+			{
+				var ld:LoginData = new LoginData();
+				ld = event.loginDataObject;
+				if(ld.userName == txt_username.text){
+					navigator.pushView(MainMenuView);
+				}else{
+					Alert.show(this,"Please give correct username !");
+				}
+			}
 			/************************************************************************/
 			private function login():void {
 				var dl:DaoLogin = new DaoLogin();
-				Utils.loginUserName = txt_username.text;
 				if(Network.checkInterNetAvailability() == true){
 					var urlVariable:URLVariables  = new URLVariables;
 					urlVariable.username = txt_username.text;
 					urlVariable.password = txt_password.text;
 					urlVariable.type = "buyer";
-					//Network.call_API(this,"http://smarttees.biz/build/products.php",urlVariable,"post");
+					Network.call_API(this,"http://smarttees.biz/build/products.php",urlVariable,"post");
 				}else{
-					//InformationBox.show(this,"No internet available.");
+					dl.getLoginDataFromDB(txt_username.text);
 				}
-					dl.getLoginDataFromDB(this,Utils.loginUserName);
-				//getLoginDataFromDB();
 			}
 			/************************************************************************/
 			protected function label1_clickHandler(event:MouseEvent):void
@@ -50,8 +59,7 @@
 				}else{
 					var urlVariable:URLVariables  = new URLVariables;
 					urlVariable.email = Utils.FORGOT_EMAIL;
-					Network.call_API(this,"http://smarttees.biz/build/products.php",urlVariable,"post");
-					
+					//Network.call_API(this,"http://smarttees.biz/build/products.php",urlVariable,"post");
 				}
 			}
 			/*************************************************************************************************/

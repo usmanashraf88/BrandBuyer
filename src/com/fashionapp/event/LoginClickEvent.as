@@ -1,20 +1,21 @@
-package com.tshirtdesigner.events
+package com.fashionapp.event
 {
 	/* @author M.USMAN ASHRAF
 	* Date 15-01-2013.
 	*/
+	import com.fashionapp.model.LoginData;	
 	import flash.events.Event;
 	
 	public class LoginClickEvent extends  Event
 	{
-		public var successfulyLoggedIn:Boolean;
-		public function LoginClickEvent(type:String,loggedIn:Boolean):void{
+		public var loginDataObject:LoginData;
+		public function LoginClickEvent(type:String,ld:LoginData):void{
 			super(type,true);
-			this.successfulyLoggedIn =loggedIn;
+			this.loginDataObject =ld;
 		}
 		override public function clone():Event
 		{
-			return new LoginClickEvent(type,successfulyLoggedIn);
+			return new LoginClickEvent(type,loginDataObject);
 		}
 	}
 }
