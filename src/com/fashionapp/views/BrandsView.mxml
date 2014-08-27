@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" title="Brands"
+		xmlns:s="library://ns.adobe.com/flex/spark" title="{resourceManager.getString('resources','brandtitle')}"
 		creationComplete="onCreComp()"
 		skinClass="assets.images.CustomViewSkin"
 		actionBarVisible="false" xmlns:components="com.fashionapp.views.components.*">
 	
 	<fx:Script>
 		<![CDATA[
+			import com.fashionapp.utils.BasicUtil;
+			
 			import spark.events.IndexChangeEvent;
 			
 			[Embed(source="assets/images/searchicon.png")]
@@ -66,14 +68,15 @@
 		<s:BorderContainer width="100%" height="1" borderVisible="false" backgroundColor="0x000000"/>
 		<s:HGroup width="100%" top="0"
 				  gap="0">
-			<components:TopTabButton label="New Brand" width="50%" click="button2_clickHandler(event)"
+			<components:TopTabButton label="{resourceManager.getString('resources','newBrand')}" width="100%" click="button2_clickHandler(event)"
 									 icon="{NEW_BRAND_ICON}"
-									 height="50"/>
-			<s:BorderContainer width="1" height="100%" backgroundColor="0x000000"
-							   borderVisible="false"/>
-			<components:TopTabButton label="Search" width="50%" click="button1_clickHandler(event)"
+									 height="{BasicUtil.getComponentHeight(100)}"/>
+			<!--<s:BorderContainer width="1" height="100%" backgroundColor="0x000000"
+							   borderVisible="false"/>-->
+			<s:Spacer width="100%"/>
+			<components:TopTabButton label="{resourceManager.getString('resources','search')}" width="100%" click="button1_clickHandler(event)"
 									 icon="{SEARCH_ICON}"
-									 height="50"/>
+									 height="{BasicUtil.getComponentHeight(100)}"/>
 		</s:HGroup>
 		<s:BorderContainer width="100%" height="1" borderVisible="false" backgroundColor="0x000000"/>
 		<s:Group height="100%" width="100%">
@@ -81,8 +84,10 @@
 					itemRenderer="com.fashionapp.views.components.BrandItemRenderer"
 					change="list_changeHandler(event)">
 			</s:List>
-			<s:BorderContainer id="searchList" visible="false" width="200" right="10">
-				<s:List  width="100%" height="100%" itemRenderer="com.fashionapp.views.components.SearchItemRenderer"
+			<s:BorderContainer id="searchList" visible="false" width="100%"
+							   borderVisible="false">
+				<s:List  width="100%" height="100%" 
+						 itemRenderer="com.fashionapp.views.components.SearchItemRenderer"
 						 skinClass="com.fashionapp.skins.MenuListSkin">
 					<s:dataProvider>
 						<s:ArrayCollection>

@@ -1,26 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
 							xmlns:s="library://ns.adobe.com/flex/spark" 
-							firstView="com.fashionapp.views.LoginView" applicationDPI="160"
-							initialize="viewnavigatorapplication1_initializeHandler(event)">
-	<fx:Script>
-		<![CDATA[
-	//http://stackoverflow.com/questions/10392469/connecting-flex-to-sqlite
-			import com.fashionapp.model.BrandData;
-			import com.fashionapp.util.Test;
-			
-			import mx.collections.ArrayCollection;
-			import mx.events.FlexEvent;
-			
-			protected function viewnavigatorapplication1_initializeHandler(event:FlexEvent):void
-			{
-				// TODO Auto-generated method stub
-				Test.getDummyBrandData();
-			}
-			
-		]]>
-	</fx:Script>
-	<fx:Declarations> 
+							firstView="com.fashionapp.views.LoginView" applicationDPI="160" xmlns:controllers="com.fashionapp.controllers.*"
+							creationComplete="{controller.creationCompleteHandler();resourceManager.localeChain = ['fr_FR']}" xmlns:views="com.fashionapp.views.*">
+	<fx:Style source="assets/images/styles.css"/>
+	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<controllers:BuyerAppViewController view="{this}" id="controller"/>
 	</fx:Declarations>
 </s:ViewNavigatorApplication>

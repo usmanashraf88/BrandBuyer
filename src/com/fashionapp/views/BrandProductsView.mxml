@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
-		title="ALEXENDER MCQUEEN"
 		skinClass="assets.images.CustomViewWithBackButtonAndSubTitleNormalSkin"
 		actionBarVisible="false"
 		creationComplete="view1_creationCompleteHandler(event)" xmlns:components="com.fashionapp.views.components.*">
@@ -13,7 +12,11 @@
 			import assets.images.CustomViewWithBackButtonAndSubTitleNormalSkin;
 			import assets.images.CustomViewWithBackButtonAndSubTitleSkin;
 			
+			import com.fashionapp.utils.BasicUtil;
+			
 			import mx.events.FlexEvent;
+			
+			import spark.events.IndexChangeEvent;
 			[Embed(source="assets/images/openmenulogo.jpg")]
 			[Bindable]
 			private var OPEN_MENU_LOGO:Class;
@@ -25,6 +28,7 @@
 			protected function view1_creationCompleteHandler(event:FlexEvent):void
 			{
 				(this.skin as CustomViewWithBackButtonAndSubTitleNormalSkin).subTitle.text = "FALL 2000 | WOMEN";
+				this.title = "ALEXENDER MCQUEEN";
 				/* this.addEventListener('openMenuClicked',openMenuClickHandler); */
 			}
 			
@@ -37,6 +41,21 @@
 				navigator.pushView(BrandProductInfo);
 			}
 			
+			protected function list_menu_changeHandler(event:IndexChangeEvent):void
+			{
+				if(list_menu.selectedIndex == 0) {
+					this.navigator.pushView(TakeNewPhotoView);
+				} else {
+					this.navigator.pushView(TakePhotoView);
+				}
+			}
+			
+			protected function toptabbutton1_clickHandler(event:MouseEvent):void
+			{
+				/* lbl_selectedItemsToDelete.includeInLayout = true; */
+				navigator.pushView(DeleteBrandProductsView);
+			}
+			
 		]]>
 	</fx:Script>
 	<s:BorderContainer width="100%" height="1" borderVisible="false" backgroundColor="0x000000" top="0"/>
@@ -46,9 +65,16 @@
 		</s:layout>
 		<s:BorderContainer width="100%" height="1" borderVisible="false" backgroundColor="0x000000" top="0"/>
 		<s:HGroup width="100%">
-			<components:TopTabButton icon="{NEW_BRAND_ICON}" label="Product" height="45" width="70%"
-									 click="{list_menu.visible = !list_menu.visible}"/>
-			<components:TopTabButton icon="{NEW_BRAND_ICON}" label="Delete" height="45" width="30%"/>
+			<components:TopTabButton icon="{NEW_BRAND_ICON}" label="{resourceManager.getString('resources','product')}" 
+									 height="{BasicUtil.getComponentHeight(100)}" width="100%"
+									 click="{list_menu.visible = !list_menu.visible}"
+									 styleName="viewtextitalic"/>
+			<!--<s:BorderContainer width="1" height="100%" borderVisible="false" backgroundColor="0x000000" top="0"/>-->
+			<s:Spacer width="100%"/>
+			<s:Label text="0 selected" id="lbl_selectedItemsToDelete" includeInLayout="false" fontSize="10"/>
+			<components:TopTabButton label="{resourceManager.getString('resources','delete')}" height="{BasicUtil.getComponentHeight(100)}" width="100%"
+									 click="toptabbutton1_clickHandler(event)"
+									 styleName="viewtextitalic"/>
 		</s:HGroup>
 		<s:BorderContainer width="100%" height="1" borderVisible="false" backgroundColor="0x000000" top="0"/>
 		<s:Scroller height="100%" width="100%">
@@ -59,27 +85,32 @@
 								  rowAlign="justifyUsingHeight"/>
 				</s:layout>
 				<s:Image source="{OPEN_MENU_LOGO}" 
-						 height="150" width="150"
+						 height="{BasicUtil.getComponentHeight(300)}" 
+						 width="{BasicUtil.getComponentHeight(300)}"
 						 horizontalCenter="0"
 						 verticalCenter="0"
 						 click="image1_clickHandler(event)"/>
 				<s:Image source="{OPEN_MENU_LOGO}" 
-						 height="150" width="150"
+						 height="{BasicUtil.getComponentHeight(300)}" 
+						 width="{BasicUtil.getComponentHeight(300)}"
 						 horizontalCenter="0"
 						 verticalCenter="0"
 						 click="image1_clickHandler(event)"/>
 				<s:Image source="{OPEN_MENU_LOGO}" 
-						 height="150" width="150"
+						 height="{BasicUtil.getComponentHeight(300)}" 
+						 width="{BasicUtil.getComponentHeight(300)}"
 						 horizontalCenter="0"
 						 verticalCenter="0"
 						 click="image1_clickHandler(event)"/>
 				<s:Image source="{OPEN_MENU_LOGO}" 
-						 height="150" width="150"
+						 height="{BasicUtil.getComponentHeight(300)}" 
+						 width="{BasicUtil.getComponentHeight(300)}"
 						 horizontalCenter="0"
 						 verticalCenter="0"
 						 click="image1_clickHandler(event)"/>
 				<s:Image source="{OPEN_MENU_LOGO}" 
-						 height="150" width="150"
+						 height="{BasicUtil.getComponentHeight(300)}" 
+						 width="{BasicUtil.getComponentHeight(300)}"
 						 horizontalCenter="0"
 						 verticalCenter="0"
 						 click="image1_clickHandler(event)"/>
@@ -88,10 +119,12 @@
 		</s:Scroller>
 	</s:Group>
 	<s:BorderContainer width="100%" height="100%" borderVisible="false" backgroundColor="0x000000"
-					   visible="{list_menu.visible}" backgroundAlpha="0.6" top="45"/>
+					   visible="{list_menu.visible}" backgroundAlpha="0.6" top="{BasicUtil.getComponentPadding(100)}"/>
 	<s:List width="100%" id="list_menu" visible="false"
 			skinClass="com.fashionapp.skins.MenuListSkin"
-			top="45">
+			itemRenderer="com.fashionapp.views.components.ListItemRendererWithSep"
+			top="{BasicUtil.getComponentPadding(100)+1}"
+			change="list_menu_changeHandler(event)">
 		<s:dataProvider>
 			<s:ArrayList>
 				<fx:String>TAKE PHOTO</fx:String>

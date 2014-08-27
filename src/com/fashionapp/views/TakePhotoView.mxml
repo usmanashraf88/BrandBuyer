@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		title="BAND OR CHAT USER NAME"
 		actionBarVisible="false"
-		skinClass="assets.images.CustomViewWithBackButtonSkin">
+		skinClass="assets.images.CustomViewWithBackButtonNoFooterSkin">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -23,10 +23,10 @@
 					   backgroundColor="0x000000">
 		<s:HGroup horizontalAlign="center" verticalAlign="middle"
 				  height="100%" width="100%">
-			<s:Label text="OK" color="0xFFFFFF" paddingLeft="5" paddingRight="1" width="100%" textAlign="center" fontSize="11"/>
-			<s:Label text="CANCEL" color="0xFFFFFF" paddingLeft="0" paddingRight="5" width="100%" textAlign="center" fontSize="11"/>
-			<s:Label text="TAKE ANOTHER" maxDisplayedLines="2" color="0xFFFFFF" paddingLeft="0" paddingRight="5" width="100%" textAlign="center" fontSize="11"/>
-			<s:Label text="INPUT INFO" maxDisplayedLines="2" color="0xFFFFFF" paddingLeft="0" paddingRight="5" width="100%" textAlign="center" fontSize="11"/>
+			<s:Label text="{resourceManager.getString('resources','ok')}" color="0xFFFFFF" paddingLeft="5" paddingRight="1" width="100%" textAlign="center" fontSize="11"/>
+			<s:Label text="{resourceManager.getString('resources','cancel')}" color="0xFFFFFF" paddingLeft="0" paddingRight="5" width="100%" textAlign="center" fontSize="11"/>
+			<s:Label text="{resourceManager.getString('resources','takeanother')}" maxDisplayedLines="2" color="0xFFFFFF" paddingLeft="0" paddingRight="5" width="100%" textAlign="center" fontSize="11"/>
+			<s:Label text="{resourceManager.getString('resources','inputinfo')}" maxDisplayedLines="2" color="0xFFFFFF" paddingLeft="0" paddingRight="5" width="100%" textAlign="center" fontSize="11"/>
 		</s:HGroup>
 	</s:BorderContainer>
 </s:View>

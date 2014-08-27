@@ -5,6 +5,7 @@
 					autoDrawBackground="false">
 	<fx:Script>
 		<![CDATA[
+			import com.fashionapp.utils.BasicUtil;
 			[Embed(source="assets/images/arrowwhite.png")]
 			[Bindable]
 			private var ARROW_WHITE:Class;
@@ -27,25 +28,43 @@
 			</s:fill>
 		</s:Rect>
 	</s:Group>
-		
-		<s:VGroup width="100%" gap="2" left="10">
+		<s:VGroup width="100%" gap="{BasicUtil.getComponentPadding(4)}" left="{BasicUtil.getComponentPadding(20)}"
+				  paddingTop="{BasicUtil.getComponentPadding(40)}"
+				  paddingBottom="{BasicUtil.getComponentPadding(40)}">
 			<s:Label text="Product Name 01" 
-					 fontSize="14" fontWeight="bold"
-					 paddingTop="20" width="100%"/>
+					 fontSize="{BasicUtil.getFontSize(28)}"
+					 styleName="viewheading" width="100%"/>
+			<s:HGroup paddingBottom="{BasicUtil.getComponentPadding(20)}"
+					  width="100%">
+				<s:Label text="Sale ID"
+						 fontSize="{BasicUtil.getFontSize(21)}"
+						 styleName="viewtextitalic"
+						 />
+				<s:Label text="SKU 001122799"
+						 fontSize="{BasicUtil.getFontSize(21)}"
+						 styleName="viewtext"
+						 width="100%"/>
+			</s:HGroup>
+			
 			<s:HGroup width="100%" gap="2" paddingTop="10">
 				<s:Label text="Quantity" 
-						 fontSize="12" 
-						 />
+						 styleName="viewtextitalic"
+						 fontSize="{BasicUtil.getFontSize(21)}"/>
+				<s:Label text="Blue"
+						 styleName="viewtext"
+						 fontSize="{BasicUtil.getFontSize(21)}"/>				
 				<s:Label text="| Colour" 
-						 fontSize="12" 
-						 />
+						 fontSize="{BasicUtil.getFontSize(21)}"
+						 styleName="viewtextitalic"/>
+				<s:Label text="Blue" fontSize="{BasicUtil.getFontSize(21)}"
+						 styleName="viewtext"/>
 				<s:Label text="| Size" 
-						 fontSize="12" 
-						 />
+						 fontSize="{BasicUtil.getFontSize(21)}"
+						 styleName="viewtextitalic"/>
+				<s:Label text="Blue"
+						 styleName="viewtext" fontSize="{BasicUtil.getFontSize(21)}"/>
 			</s:HGroup>
-			<s:Label text="Sale ID" paddingBottom="20"
-					 fontSize="12" 
-					 width="100%"/>
+			
 		</s:VGroup>
 	</s:BorderContainer>
 </s:ItemRenderer>

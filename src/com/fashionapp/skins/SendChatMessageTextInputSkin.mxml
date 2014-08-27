@@ -33,6 +33,7 @@
     
     <fx:Script fb:purpose="styling">
         <![CDATA[
+			import com.fashionapp.utils.BasicUtil;
 			[Embed(source="assets/images/searchicon.png")]
 			[Bindable]
 			private var SEARCH_ICON:Class;
@@ -218,11 +219,11 @@
     
     <!-- border --> 
     <!--- @private -->
-    <!--<s:Rect left="0" right="0" top="0" bottom="0" id="border">
+    <s:Rect left="0" right="0" top="0" bottom="0" id="border">
         <s:stroke>     
             <s:SolidColorStroke id="borderStroke" weight="1" />
         </s:stroke>
-    </s:Rect>-->
+    </s:Rect>
 	
 	<!--<s:Rect left="0" right="0" top="0" height="1">
 		<s:stroke>     
@@ -256,8 +257,10 @@
     <!--- @copy spark.components.supportClasses.SkinnableTextBase#textDisplay -->
 	<s:HGroup paddingLeft="5" paddingRight="5" height="100%" width="100%"
 			  verticalAlign="middle">
-		<s:Image source="{SEARCH_ICON}" verticalCenter="0" left="15"
-				 scaleX="0.5" scaleY="0.5" scaleZ="0.5"/>
+		<s:Image source="{SEARCH_ICON}" scaleMode="stretch" 
+				 smooth="true"
+				 width="{BasicUtil.getComponentHeight(43)}"
+				 height="{BasicUtil.getComponentHeight(44)}"/>
 		<s:Group height="100%" width="100%">
 			<s:RichEditableText id="textDisplay"
 								verticalAlign="middle"

@@ -1,28 +1,19 @@
 package com.fashionapp.util
 {
-	import com.fashionapp.model.BrandData;
-	
-	import flash.text.ReturnKeyLabel;
-	
-	import mx.collections.ArrayCollection;
+	import com.fashionapp.model.LoginData;
 
 	public class Test
 	{
-		public static function getDummyBrandData():ArrayCollection
+		public static function getDummyLoginData():LoginData
 		{
-			var arrBrand:ArrayCollection =new ArrayCollection();
-			
-			for(var i:int=0; i<=10; i++)
-			{
-				var obj:BrandData=new BrandData();
-				obj.title="Service";
-				obj.seasonId=1+i;
-				obj.numProducts=2+i;
-				obj.deptId=3+i;
-				obj.creatDate=new Date();
-				obj.lastUpdate=new Date();
-			}
-			return arrBrand;
+			var obj:LoginData=new LoginData();
+			obj.code="12345";
+			obj.email = "m.usmanashraf@yahoo.com";
+			obj.fullName = "usman ashraf";
+			obj.id = 212;
+			obj.status= "successful";
+			obj.userName = "usmanashraf";				
+			return obj;
 		}
 	}
 }

@@ -5,6 +5,7 @@
 					autoDrawBackground="false">
 	<fx:Script>
 		<![CDATA[
+			import com.fashionapp.utils.BasicUtil;
 			[Embed(source="assets/images/arrowwhite.png")]
 			[Bindable]
 			private var ARROW_WHITE:Class;
@@ -32,24 +33,51 @@
 		</s:Rect>
 	</s:Group>
 		
-		<s:HGroup width="100%" paddingRight="15"
+		<s:HGroup width="100%" paddingRight="{BasicUtil.getComponentPadding(30)}"
 				  verticalAlign="middle"
-				  paddingLeft="15">
-			<s:Image height="60" width="60" scaleMode="stretch" source="{PROD}"/>
-			<s:Spacer width="15"/>
-			<s:VGroup width="100%" gap="2">
+				  paddingLeft="{BasicUtil.getComponentPadding(30)}">
+			<s:Image height="{BasicUtil.getComponentHeight(110)}" width="{BasicUtil.getComponentHeight(110)}" 
+					 scaleMode="stretch" source="{PROD}"/>
+			<s:Spacer width="{BasicUtil.getComponentPadding(30)}"/>
+			<s:VGroup width="100%" gap="{BasicUtil.getComponentPadding(4)}"
+					  paddingTop="{BasicUtil.getComponentPadding(40)}">
+				<s:Label text="FALL 2015 | WOMEN" 
+						 styleName="viewtext"
+						 fontSize="{BasicUtil.getFontSize(18)}"
+						 width="100%"/>
 				<s:Label text="{data.brand}" 
-						 fontSize="14" fontWeight="bold"
-						 paddingTop="20" width="100%"/>
-				<s:HGroup width="100%" gap="2">
-					<s:Label text="{data.session}" 
-							 fontSize="14" fontWeight="bold"
-							 />
-					<s:Label text="{'| '+data.dept}" fontWeight="bold"
-							 fontSize="14"
-							  />
+						 styleName="viewheading"
+						 fontWeight="bold"
+						 fontSize="{BasicUtil.getFontSize(28)}"
+						 width="100%"/>
+				<s:Label text="DESCRIPTION" 
+						 styleName="viewheading"
+						 fontSize="{BasicUtil.getFontSize(21)}"
+						 width="100%"/>
+				<s:Spacer height="{BasicUtil.getComponentPadding(10)}"/>
+				<s:Label text="SKU 0000122001"
+						 styleName="viewheading"
+						 fontSize="{BasicUtil.getFontSize(19)}"/>
+				<s:Spacer height="{BasicUtil.getComponentPadding(10)}"/>
+				<s:HGroup width="100%" gap="{BasicUtil.getComponentPadding(20)}">
+					<s:VGroup>
+						<s:Label text="Total Reserved Quantity" 
+								 styleName="viewtextitalic"
+								 fontSize="{BasicUtil.getFontSize(21)}"/>
+						<s:Label text="40"
+								 styleName="viewtext"
+								 fontSize="{BasicUtil.getFontSize(25)}"/>
+					</s:VGroup>
+					<s:VGroup>
+						<s:Label text="Total Ordered Quantity" styleName="viewtextitalic"
+								 fontSize="{BasicUtil.getFontSize(21)}"/>
+						<s:Label text="38"
+								 styleName="viewtext"
+								 fontSize="{BasicUtil.getFontSize(25)}"/>
+					</s:VGroup>
+					
 				</s:HGroup>
-				<s:Label text="{data.productName}" 
+				<!--<s:Label text="{data.productName}" 
 						 fontSize="14" fontWeight="bold"
 						 width="100%"/>
 				<s:Label text="{data.desc}" 
@@ -57,10 +85,10 @@
 						 paddingTop="20" paddingBottom="5" width="100%"/>
 				<s:Label text="{data.title}" 
 						 fontSize="12"
-						 paddingBottom="0" width="100%"/>
+						 paddingBottom="0" width="100%"/>-->
 			</s:VGroup>
-			<s:Image source="{currentState=='selected'?ARROW_WHITE:ARROW_BLACK}"
-					 scaleX="0.5" scaleY="0.5" scaleZ="0.5"/>
+			<!--<s:Image source="{currentState=='selected'?ARROW_WHITE:ARROW_BLACK}"
+					 scaleX="0.5" scaleY="0.5" scaleZ="0.5"/>-->
 		</s:HGroup>
 	</s:BorderContainer>
 </s:ItemRenderer>

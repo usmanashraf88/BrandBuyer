@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		creationComplete="onCreComp()"
 		actionBarVisible="false"
-		title="SETTINGS"
+		title="{resourceManager.getString('resources','settingstitle')}"
 		skinClass="assets.images.CustomViewSkin">
 	<fx:Script>
 		<![CDATA[

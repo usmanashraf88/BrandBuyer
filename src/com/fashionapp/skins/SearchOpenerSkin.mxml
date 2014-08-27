@@ -3,6 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark">
 	<fx:Script>
 		<![CDATA[
+			import com.fashionapp.utils.BasicUtil;
 			[Embed(source="assets/images/searchicon.png")]
 			[Bindable]
 			private var SEARCH_ICON:Class;
@@ -10,6 +11,9 @@
 			[Embed(source="assets/images/openmenuicon.png")]
 			[Bindable]
 			private var OPEN_MENU_ICON:Class;
+			
+			[Bindable]
+			public var showSearchOpener:Boolean = true;
 		]]>
 	</fx:Script>
 	<s:Rect height="100%" width="100%">
@@ -28,13 +32,29 @@
 		</s:Rect>
 		<s:Group height="100%" width="100%">
 			<s:layout>
-				<s:HorizontalLayout paddingLeft="15" 
-									paddingRight="15"
+				<s:HorizontalLayout paddingLeft="{BasicUtil.getComponentPadding(30)}" 
+									paddingRight="{BasicUtil.getComponentPadding(30)}"
 									verticalAlign="middle"/>
 			</s:layout>
-			<s:Image source="{SEARCH_ICON}" scaleX="0.5" scaleY="0.5" scaleZ="0.5"/>
-			<s:Label text="Search" fontStyle="italic" width="100%"/>
-			<s:Image source="{OPEN_MENU_ICON}" scaleX="0.5" scaleY="0.5" scaleZ="0.5"/>
+			<s:Image source="{SEARCH_ICON}" scaleMode="stretch" 
+					 smooth="true"
+					 width="{BasicUtil.getComponentHeight(43)}"
+					 height="{BasicUtil.getComponentHeight(44)}"/>
+			<!--<s:Label text="Search" fontSize="{BasicUtil.getFontSize(30)}" 
+					 styleName="viewtextitalic" width="100%"/>-->
+			<s:TextInput width="100%" 
+						 skinClass="com.fashionapp.skins.SearchTextInputWithoutBordersSkin"
+						 height="100%"
+						 focusAlpha="0"
+						 focusColor="0xffffff"
+						 prompt="Search"
+						 fontSize="{BasicUtil.getFontSize(30)}" 
+						 styleName="viewtextitalic"/>
+			<s:Image source="{OPEN_MENU_ICON}" scaleMode="stretch" 
+					 smooth="true" 
+					 visible="{showSearchOpener}"
+					 width="{BasicUtil.getComponentHeight(30)}"
+					 height="{BasicUtil.getComponentHeight(15)}"/>
 		</s:Group>
 		<s:Rect height="1" width="100%">
 			<s:fill>

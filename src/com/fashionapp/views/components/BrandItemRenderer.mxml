@@ -5,6 +5,11 @@
 				   height="100%"
 				   color="{currentState == 'selected'?0xffffff:0x000000}"
 				   autoDrawBackground="false">
+	<fx:Script>
+		<![CDATA[
+			import com.fashionapp.utils.BasicUtil;
+		]]>
+	</fx:Script>
 	<s:states>
 		<s:State name="normal"/>
 		<s:State name="hovered"/>
@@ -23,15 +28,20 @@
 		</s:layout>
 		<s:Group width="100%" height="100%">			
 			<s:layout>
-				<s:VerticalLayout paddingLeft="15" paddingRight="15" paddingTop="15" paddingBottom="15"/>
+				<s:VerticalLayout paddingLeft="{BasicUtil.getComponentPadding(30)}" paddingRight="{BasicUtil.getComponentPadding(30)}" 
+								  paddingTop="{BasicUtil.getComponentPadding(30)}" paddingBottom="{BasicUtil.getComponentPadding(30)}"/>
 			</s:layout>
-			<s:Label x="12" y="32" text="BRAND TITLE"
-					 fontWeight="normal"/>
+			<s:Label text="BRAND TITLE"
+					 styleName="viewheading"
+					 fontSize="{BasicUtil.getFontSize(28)}"
+					 fontWeight="bold"/>
 			<s:Group width="100%">
-				<s:Label text="Season | Dept" fontSize="10"/>
-				<s:Label text="(30)" right="5" fontSize="10"/>
+				<s:Label text="Season | Dept" fontSize="{BasicUtil.getFontSize(18)}"
+						 styleName="viewtext"/>
+				<s:Label text="197 Products" right="5" fontSize="{BasicUtil.getFontSize(26)}" styleName="viewtextitalic"/>
 			</s:Group>
-			<s:Label text="Date" fontSize="10"/>
+			<s:Label text="Date" fontSize="{BasicUtil.getFontSize(24)}"
+					 styleName="viewtext"/>
 		</s:Group>
 		<s:BorderContainer width="100%" height="1" borderVisible="false" backgroundColor="0x000000"/>
 	</s:Group>

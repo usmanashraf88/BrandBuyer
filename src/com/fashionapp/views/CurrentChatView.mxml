@@ -9,6 +9,8 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import com.fashionapp.utils.BasicUtil;
+			
 			import spark.events.IndexChangeEvent;
 			[Embed(source="assets/images/addbrandicon.png")]
 			[Bindable]
@@ -41,10 +43,12 @@
 	</fx:Script>
 	<s:Group width="100%" height="100%">
 		<s:layout>
-			<s:VerticalLayout
-							  gap="0"
+			<s:VerticalLayout gap="0"
 							  horizontalAlign="center"/>
 		</s:layout>
+		<s:BorderContainer width="100%" borderVisible="false" 
+						   backgroundColor="0x000000" height="1"/>
+		<s:Spacer height="{BasicUtil.getComponentHeight(10)}"/>
 		<s:Group>
 			<s:Rect height="100%" width="100%">
 				<s:fill>
@@ -52,14 +56,17 @@
 				</s:fill>
 			</s:Rect>
 			<s:Label text="20 Aug, 2014" color="0xffffff"
-					 paddingLeft="5" paddingRight="5" paddingTop="5" paddingBottom="5"/>
+					 fontSize="{BasicUtil.getFontSize(18)}"
+					 styleName="viewtext"
+					 paddingLeft="{BasicUtil.getComponentPadding(10)}" paddingRight="{BasicUtil.getComponentPadding(10)}" 
+					 paddingTop="{BasicUtil.getComponentPadding(10)}" paddingBottom="{BasicUtil.getComponentPadding(10)}"/>
 		</s:Group>
-		<s:BorderContainer width="100%" borderVisible="false" backgroundColor="0x000000" height="1"/>
 		<s:Group width="100%" height="100%">
 			<s:Scroller height="100%" width="100%">
 				<s:Group width="100%">
 					<s:layout>
-						<s:VerticalLayout paddingLeft="15" paddingRight="15"/>
+						<s:VerticalLayout paddingLeft="{BasicUtil.getComponentPadding(30)}" 
+										  paddingRight="{BasicUtil.getComponentPadding(30)}"/>
 					</s:layout>
 					<renderers:FromMessageRenderer/>
 					<renderers:ToMessageRenderer/>
@@ -67,8 +74,9 @@
 					<renderers:FromMessageRenderer/>
 				</s:Group>	
 			</s:Scroller>
-			<s:BorderContainer id="menuList" visible="false" height="60" width="200" bottom="0">
-				<s:List  width="100%" height="70" itemRenderer="com.fashionapp.views.components.SearchItemRenderer"
+			<s:BorderContainer id="menuList" visible="false" height="{BasicUtil.getComponentHeight(120)}" 
+							   width="{BasicUtil.getComponentHeight(400)}" bottom="0">
+				<s:List  width="100%" height="{BasicUtil.getComponentHeight(140)}" itemRenderer="com.fashionapp.views.components.SearchItemRenderer"
 						 change="list1_changeHandler(event)">
 					<s:dataProvider>
 						<s:ArrayCollection>
@@ -80,11 +88,21 @@
 			</s:BorderContainer>
 		</s:Group>
 		<s:BorderContainer width="100%" borderVisible="false" backgroundColor="0x000000" height="1"/>
-		<s:HGroup width="100%" bottom="5" horizontalAlign="center"
-				  verticalAlign="middle" paddingLeft="15" paddingRight="15">
-			<s:Image source="{NEW_BRAND_ICON}" scaleX="0.5" scaleY="0.5" scaleZ="0.5" click="button1_clickHandler(event)"/>
-			<s:TextInput width="100%" skinClass="com.fashionapp.skins.SendChatMessageTextInputSkin"/>
-			<s:Label text="Send" fontStyle="italic"/>
+		<s:HGroup width="100%" bottom="{BasicUtil.getComponentPadding(10)}" horizontalAlign="center"
+				  verticalAlign="middle"
+				  paddingTop="{BasicUtil.getComponentPadding(10)}"
+				  paddingBottom="{BasicUtil.getComponentPadding(10)}"
+				  paddingLeft="{BasicUtil.getComponentPadding(30)}" 
+				  paddingRight="{BasicUtil.getComponentPadding(30)}">
+			<s:Image source="{NEW_BRAND_ICON}" scaleMode="stretch" smooth="true"
+					 height="{BasicUtil.getComponentHeight(36)}"
+					 width="{BasicUtil.getComponentHeight(36)}"
+					 click="button1_clickHandler(event)"/>
+			<s:TextInput width="100%" skinClass="com.fashionapp.skins.SendChatMessageTextInputSkin"
+						 styleName="viewtext"
+						 fontSize="{BasicUtil.getFontSize(34)}"/>
+			<s:Label text="{resourceManager.getString('resources','send')}" fontSize="{BasicUtil.getFontSize(34)}"
+					 styleName="viewtextitalic"/>
 		</s:HGroup>
 	</s:Group>
 </s:View>

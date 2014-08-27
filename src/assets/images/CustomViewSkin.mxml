@@ -22,12 +22,15 @@
 -->
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
     xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5"
-	height="100%" width="100%">
+	height="100%" width="100%" xmlns:views="com.fashionapp.views.*">
 	<fx:Metadata>[HostComponent("spark.components.View")]</fx:Metadata>
 
     <fx:Script fb:purpose="styling">
         <![CDATA[         
+			import com.fashionapp.utils.BasicUtil;
 			import com.fashionapp.views.MainMenuView;
+			
+			import mx.effects.Move;
 			
 			import spark.components.View;
             /**
@@ -59,6 +62,15 @@
                 
                 super.updateDisplayList(unscaledWidth, unscaledHeight);
             }
+			
+			public function openMenu():void {
+				var move:Move = new Move();
+				move.xFrom = (this.hostComponent as View).width;
+				move.xTo = 0;
+				move.play([menu]);
+				menu.visible = true;
+			}
+			
         ]]>        
     </fx:Script>
     
@@ -83,20 +95,26 @@
 		<s:layout>
 			<s:VerticalLayout gap="0"/>
 		</s:layout>
-		<s:BorderContainer borderVisible="false" height="60" width="100%"
+		<s:BorderContainer borderVisible="false" height="{BasicUtil.getComponentHeight(50)}" width="100%"
 						   backgroundColor="0xffffff">
 			<s:Label width="100%" text="{this.hostComponent.title}"
+					 styleName="viewtext"
 					 verticalCenter="0" textAlign="center"
-					 paddingLeft="50" paddingRight="50" maxDisplayedLines="1"/>
-			<s:Image source="{BG}" scaleX="0.5" scaleY="0.5" scaleZ="0.5" verticalCenter="0"
-					 right="15" click="{(this.hostComponent as View).navigator.pushView(MainMenuView)}"/>
+					 paddingLeft="{BasicUtil.getFontSize(20)}" paddingRight="{BasicUtil.getFontSize(20)}" maxDisplayedLines="1"
+					 fontSize="{BasicUtil.getFontSize(36)}"/>
+			<s:Image source="{BG}" scaleMode="stretch" height="{BasicUtil.getComponentHeight(28)}" verticalCenter="0"
+					 right="10" click="{openMenu()}"
+					 width="{BasicUtil.getComponentHeight(30)}"/>
 		</s:BorderContainer>
 		<s:Group id="contentGroup" height="100%" width="100%" minWidth="0" minHeight="0">
 			<s:layout>
 				<s:BasicLayout/>
 			</s:layout>
 		</s:Group>
-		<s:Image scaleMode="stretch" height="35" smooth="true" source="{FOOTER_BG}" width="100%"/>
+		<s:Image scaleMode="stretch" height="{BasicUtil.getComponentHeight(50)}" smooth="true" source="{FOOTER_BG}" width="100%"/>
 	</s:Group>
+	<!--<s:BorderContainer backgroundAlpha="0" borderVisible="false" width="100%" height="100%" >-->
+		<views:MainMenuView height="100%" width="100%" id="menu" visible="false"/>	
+	<!--</s:BorderContainer>-->
     <!--- @copy spark.components.SkinnableContainer#contentGroup -->
 </s:Skin>

@@ -5,6 +5,7 @@
 					autoDrawBackground="false">
 	<fx:Script>
 		<![CDATA[
+			import com.fashionapp.utils.BasicUtil;
 			[Embed(source="assets/images/arrowwhite.png")]
 			[Bindable]
 			private var ARROW_WHITE:Class;
@@ -26,13 +27,18 @@
 			</s:fill>
 		</s:Rect>
 	</s:Group>
-	<s:HGroup width="100%" paddingRight="15"
+	<s:HGroup width="100%" paddingRight="{BasicUtil.getComponentPadding(30)}"
 			  verticalAlign="middle"
-			  paddingLeft="15">
+			  paddingLeft="{BasicUtil.getComponentPadding(30)}">
 		<s:Label text="{data.toString()}" 
-				 fontSize="14"
-				 paddingTop="20" paddingBottom="20" width="100%"/>
+				 paddingLeft="{BasicUtil.getComponentPadding(24)}"
+				 paddingTop="{BasicUtil.getComponentPadding(20)}" paddingBottom="{BasicUtil.getComponentPadding(20)}"
+				 styleName="viewheader"
+				 fontSize="{BasicUtil.getFontSize(26)}" width="100%"/>
 		<s:Image source="{currentState=='selected'?ARROW_WHITE:ARROW_BLACK}"
-				 scaleX="0.5" scaleY="0.5" scaleZ="0.5"/>
+				 height="{BasicUtil.getComponentHeight(30)}"
+				 width="{BasicUtil.getComponentHeight(17)}"
+				 smooth="true"
+				 scaleMode="stretch"/>
 	</s:HGroup>
 </s:ItemRenderer>

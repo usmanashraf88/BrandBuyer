@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-		xmlns:s="library://ns.adobe.com/flex/spark"
-		xmlns:components="com.fashionapp.views.components.*"
-		actionBarVisible="false" creationComplete="{contactList.visible = true;}"
-		skinClass="assets.images.CustomViewSkin" title="Chats">
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" title="{resourceManager.getString('resources','chattitle')}" 
+		creationComplete="{contactList.visible = true;}"
+		actionBarVisible="false" xmlns:components="com.fashionapp.views.components.*"
+		skinClass="assets.images.CustomViewSkin">
 	
 	<fx:Script>
 		<![CDATA[
+			import com.fashionapp.utils.BasicUtil;
 			import com.fashionapp.views.components.NewBrand;
 			
 			import mx.collections.ArrayCollection;
@@ -33,58 +34,68 @@
 			
 		]]>
 	</fx:Script>
-	<s:BorderContainer width="100%" height="100%" borderVisible="false">
+	<s:BorderContainer width="100%" height="100%"
+					   borderVisible="false">
 		<s:layout>
 			<s:VerticalLayout gap="0"/>
 		</s:layout>
-		<s:BorderContainer width="100%" height="1" backgroundColor="0x000000" borderVisible="false"/>
-			<s:HGroup top="0" width="100%" gap="0">
-				<components:TopTabButton width="50%" height="50" label="Contacts"
+		<s:BorderContainer width="100%" height="1" borderVisible="false" backgroundColor="0x000000"/>
+			<s:HGroup width="100%" top="0" gap="0">
+				<components:TopTabButton label="Contacts" height="{BasicUtil.getComponentHeight(100)}" 
+										 width="50%" 
 										 click="button2_clickHandler(event)"/>
-				<s:BorderContainer width="1" height="100%" backgroundColor="0x000000"
+				<s:BorderContainer width="1" height="100%" 
+								   backgroundColor="0x000000"
 								   borderVisible="false"/>
-				<components:TopTabButton width="50%" height="50" label="Chat"
-										 click="button3_clickHandler(event)"/>
+				<components:TopTabButton label="Chat" 
+										 height="{BasicUtil.getComponentHeight(100)}" 
+										 width="50%" click="button3_clickHandler(event)"/>
 			</s:HGroup>
-		<s:TextInput width="100%" height="50" focusAlpha="0" focusColor="0xffffff" prompt="Search"
-					 skinClass="com.fashionapp.skins.SearchTextInputSkin"/>
-		<s:Group width="100%">
+		<s:TextInput prompt="Search" width="100%" 
+					 skinClass="com.fashionapp.skins.SearchTextInputSkin"
+					 height="{BasicUtil.getComponentHeight(100)}"
+					 focusAlpha="0"
+					 focusColor="0xffffff"
+					 fontSize="{BasicUtil.getFontSize(30)}" 
+					 styleName="viewtextitalic"/>
+		<s:Group width="100%"
+				 includeInLayout="{contactList.visible}"
+				 visible="{contactList.visible}">
 			<s:Rect width="100%" height="100%">
 				<s:fill>
 					<s:SolidColor color="0x000000"/>
 				</s:fill>
 			</s:Rect>
-			<s:Label width="100%" color="0xffffff" paddingBottom="10" paddingLeft="15"
-					 paddingRight="15" paddingTop="10" text="Staff"/>
+			<s:Label width="100%" color="0xffffff" text="Staff"
+					 styleName="viewtext"
+					 fontSize="{BasicUtil.getFontSize(21)}" paddingTop="{BasicUtil.getComponentPadding(20)}" 
+					 paddingBottom="{BasicUtil.getComponentPadding(20)}" paddingLeft="{BasicUtil.getComponentPadding(30)}" 
+					 paddingRight="{BasicUtil.getComponentPadding(30)}"/>
 		</s:Group>
-		<s:Group width="100%" height="100%">
-			<s:List id="contactList" visible="{!chatList.visible}" width="100%" height="100%"
-					labelField="data" skinClass="com.fashionapp.skins.MenuListSkin">
+		<s:Group height="100%" width="100%">
+			<s:List id="contactList" visible="{!chatList.visible}" width="100%" height="100%" labelField="data"
+					skinClass="com.fashionapp.skins.MenuListSkin"
+					itemRenderer="com.fashionapp.views.components.ListItemRendererWithSep">
 				<s:dataProvider>
 					<s:ArrayCollection>
 						<fx:String>Ann Smith</fx:String>
-						<fx:String>Jason Chan</fx:String>
-						<fx:String>Mary Kay</fx:String>>
-						<fx:String>Jennifer Tang</fx:String>
-						<fx:String>Keith To</fx:String>
-						<fx:String>Mark Ko</fx:String>
-						<fx:String>Tess Wong</fx:String>
-						<fx:String>Zoe Li</fx:String>
-						<fx:String>Cindy Lo</fx:String>
+						<fx:String>Ann Smith</fx:String>
+						<fx:String>Ann Smith</fx:String>
+						<fx:String>Ann Smith</fx:String>
+						<fx:String>Ann Smith</fx:String>
+						<fx:String>Ann Smith</fx:String>
+						<fx:String>Ann Smith</fx:String>
+						<fx:String>Ann Smith</fx:String>
 					</s:ArrayCollection>
 				</s:dataProvider>
 			</s:List>
-			<s:List id="chatList" visible="{!contactList.visible}" width="100%" height="100%"
-					click="chatList_clickHandler(event)"
+			<s:List id="chatList" visible="{!contactList.visible}" width="100%" height="100%" click="chatList_clickHandler(event)" 
 					itemRenderer="com.fashionapp.views.ChatItemRenderer">
 				<s:dataProvider>
 					<s:ArrayCollection>
-						<fx:Object message="Latest message goes here" name="Ann Smith"
-								   time="14:27 PM"/>
-						<fx:Object message="Latest message goes here" name="Ann Smith"
-								   time="14:27 PM"/>
-						<fx:Object message="Latest message goes here" name="Ann Smith"
-								   time="14:27 PM"/>
+						<fx:Object name="Ann Smith" message="Latest message goes here" time="14:27 PM"/>
+						<fx:Object name="Ann Smith" message="Latest message goes here" time="14:27 PM"/>
+						<fx:Object name="Ann Smith" message="Latest message goes here" time="14:27 PM"/>
 					</s:ArrayCollection>
 				</s:dataProvider>
 			</s:List>

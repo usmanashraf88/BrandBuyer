@@ -27,6 +27,8 @@
 
     <fx:Script fb:purpose="styling">
         <![CDATA[         
+			import com.fashionapp.utils.BasicUtil;
+			
 			import spark.components.View;
             /**
              *  @private
@@ -84,35 +86,54 @@
 		<s:layout>
 			<s:VerticalLayout gap="0"/>
 		</s:layout>
-		<s:BorderContainer borderVisible="false" height="60" width="100%"
+		<s:BorderContainer borderVisible="false" height="{BasicUtil.getComponentHeight(70)}" width="100%"
 						   backgroundColor="0xffffff">
-			<s:Label width="100%" text="{this.hostComponent.title}"
-					 verticalCenter="0" textAlign="center"
-					 paddingLeft="50" paddingRight="50" maxDisplayedLines="1"/>
-			<s:Image source="{BACK_ARROW}" scaleX="0.5" scaleY="0.5" scaleZ="0.5" verticalCenter="0"
+			<s:VGroup width="100%" height="100%">
+				<s:Label width="100%" text="{this.hostComponent.title}"
+						 styleName="viewheader"
+						 fontWeight="bold"
+						 height="100%"
+						 textAlign="center"
+						 paddingLeft="10" paddingRight="10" maxDisplayedLines="1"
+						 fontSize="{BasicUtil.getFontSize(24)}"
+						 verticalAlign="middle"/>
+				<s:Label horizontalCenter="0" bottom="3" fontSize="{BasicUtil.getFontSize(16)}" styleName="viewtext" id="subTitle"
+						 height="100%" textAlign="center"
+						 verticalAlign="middle"
+						 width="100%"/>
+			</s:VGroup>
+			
+			<s:Image source="{BACK_ARROW}" scaleMode="stretch" height="{BasicUtil.getComponentHeight(30)}" width="{BasicUtil.getComponentHeight(17)}"
+					 verticalCenter="0"
 					 click="{(this.hostComponent as View).navigator.popView()}"
-					 left="15"/>
-			<s:Image source="{OPEN_MENU}" scaleX="0.5" scaleY="0.5" scaleZ="0.5" verticalCenter="0"
+					 left="10"
+					 smooth="true"/>
+			<s:Image source="{OPEN_MENU}" scaleMode="stretch" height="{BasicUtil.getComponentHeight(15)}" width="{BasicUtil.getComponentHeight(30)}" verticalCenter="0"
 					 click="{this.dispatchEvent(new Event('openMenuClicked',true))}"
-					 right="15"/>
-			<s:Label horizontalCenter="0" bottom="1" fontSize="9" id="subTitle"/>
+					 right="10"
+					 smooth="true"/>
 		</s:BorderContainer>
 		<s:Group id="contentGroup" height="100%" width="100%" minWidth="0" minHeight="0">
 			<s:layout>
 				<s:BasicLayout/>
 			</s:layout>
 		</s:Group>
-		<s:Group height="35" width="100%">
+		<s:Group height="{BasicUtil.getComponentHeight(70)}" width="100%">
 			<s:Rect height="100%" width="100%">
 				<s:fill>
 					<s:SolidColor color="0x000000"/>
 				</s:fill>
 			</s:Rect>
-			<s:HGroup height="100%" width="100%" paddingLeft="5" paddingRight="5">
-				<s:Label width="100%" height="100%" verticalAlign="middle" textAlign="center" color="0xffffff" fontSize="10" text="BACK"/>
-				<s:Label width="100%" height="100%" verticalAlign="middle" textAlign="center" color="0xffffff" fontSize="10" text="SAVE"/>
-				<s:Label width="100%" height="100%" verticalAlign="middle" textAlign="center" color="0xffffff" fontSize="10" text="OWNER"/>
-				<s:Label width="100%" height="100%" verticalAlign="middle" textAlign="center" color="0xffffff" fontSize="10" text="TAKE ANOTHER"
+			<s:HGroup height="100%" width="100%" paddingLeft="{BasicUtil.getComponentPadding(10)}" paddingRight="{BasicUtil.getComponentPadding(10)}">
+				<s:Label width="100%" height="100%" verticalAlign="middle" textAlign="center" color="0xffffff" text="BACK"
+						 styleName="viewheader"
+						 fontSize="{BasicUtil.getFontSize(21)}"/>
+				<s:Label width="100%" height="100%" verticalAlign="middle" textAlign="center" color="0xffffff" styleName="viewheader"
+						 fontSize="{BasicUtil.getFontSize(21)}" text="SAVE"/>
+				<s:Label width="100%" height="100%" verticalAlign="middle" textAlign="center" color="0xffffff" styleName="viewheader"
+						 fontSize="{BasicUtil.getFontSize(21)}" text="OWNER"/>
+				<s:Label width="100%" height="100%" verticalAlign="middle" textAlign="center" color="0xffffff" styleName="viewheader"
+						 fontSize="{BasicUtil.getFontSize(21)}" text="TAKE ANOTHER"
 						 maxDisplayedLines="2"/>
 			</s:HGroup>
 		</s:Group>

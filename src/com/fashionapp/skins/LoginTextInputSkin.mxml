@@ -33,7 +33,9 @@
     
     <fx:Script fb:purpose="styling">
         <![CDATA[
-        import mx.core.FlexVersion;
+			import com.fashionapp.utils.BasicUtil;
+			
+			import mx.core.FlexVersion;
         
         private var paddingChanged:Boolean;
         
@@ -242,11 +244,11 @@
     <s:RichEditableText id="textDisplay"
               verticalAlign="middle"
               widthInChars="10"
-			  fontSize="14"
               left="1" right="1" top="1" bottom="1" 
 			  textAlign="center"
 			  paddingTop="10"
-			  paddingBottom="10"/>
+			  paddingBottom="10"
+			  fontSize="{BasicUtil.getFontSize(26)}"/>
     <!--- Defines the Label that is used for prompt text. The includeInLayout property is false so the prompt text does not affect measurement. -->
     <s:Label id="promptDisplay" maxDisplayedLines="1"
                 verticalAlign="middle"
@@ -254,11 +256,10 @@
                 includeIn="normalWithPrompt,disabledWithPrompt" 
                 includeInLayout="false"
 				left="1" right="1" top="1" bottom="1" 
-				fontSize="14"
 				textAlign="center"
 				fontStyle="italic"
 				color="0x000000"
-				paddingTop="10"
-				paddingBottom="10"/>
+				paddingTop="{BasicUtil.getComponentPadding(10)}"
+				paddingBottom="{BasicUtil.getComponentPadding(10)}"/>
 
 </s:SparkSkin>

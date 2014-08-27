@@ -1,6 +1,7 @@
 package com.fashionapp.views.components
 {
 	import com.fashionapp.skins.TopTabButtonSkin;
+	import com.fashionapp.utils.BasicUtil;
 	
 	import flash.events.MouseEvent;
 	import flash.geom.ColorTransform;
@@ -23,6 +24,7 @@ package com.fashionapp.views.components
 		{
 			super();
 			this.setStyle("skinClass",TopTabButtonSkin);
+			this.setStyle("fontSize",BasicUtil.getFontSize(30));
 			this.addEventListener(FlexEvent.CREATION_COMPLETE,function(event:FlexEvent):void {
 				iconImage.source = _icon;
 			});

@@ -37,6 +37,7 @@
     
     <fx:Script fb:purpose="styling">
         <![CDATA[         
+			import com.fashionapp.utils.BasicUtil;
 			[Embed(source="assets/images/iconmenubuttonbg.png")]
 			[Bindable]
 			private var BG:Class;
@@ -212,9 +213,11 @@
             </s:LinearGradientStroke>
         </s:stroke>
     </s:Rect>-->
-	<s:VGroup paddingTop="10" paddingBottom="10" horizontalCenter="0" verticalCenter="0">
-		<s:Image source="{BG}"
-				 scaleX="0.5" scaleY="0.5" scaleZ="0.5"/>	
+	<s:VGroup paddingTop="{BasicUtil.getComponentPadding(10)}" paddingBottom="{BasicUtil.getComponentPadding(10)}" horizontalCenter="0" verticalCenter="0">
+		<s:Image source="{BG}" scaleMode="stretch" 
+				 height="{BasicUtil.getComponentHeight(28)}" 
+				 verticalCenter="0"
+				 width="{BasicUtil.getComponentHeight(30)}"/>	
 	</s:VGroup>
 	
     <!-- layer 8: text -->

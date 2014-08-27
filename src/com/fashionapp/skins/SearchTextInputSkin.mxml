@@ -33,6 +33,7 @@
     
     <fx:Script fb:purpose="styling">
         <![CDATA[
+			import com.fashionapp.utils.BasicUtil;
 			[Embed(source="assets/images/searchicon.png")]
 			[Bindable]
 			private var SEARCH_ICON:Class;
@@ -254,10 +255,13 @@
     </s:Rect>-->
     <!-- text -->
     <!--- @copy spark.components.supportClasses.SkinnableTextBase#textDisplay -->
-	<s:HGroup paddingLeft="15" paddingRight="15" height="100%" width="100%"
+	<s:HGroup paddingLeft="{BasicUtil.getComponentPadding(30)}" paddingRight="{BasicUtil.getComponentPadding(30)}" 
+			  height="100%" width="100%"
 			  verticalAlign="middle">
-		<s:Image source="{SEARCH_ICON}" verticalCenter="0" left="15"
-				 scaleX="0.5" scaleY="0.5" scaleZ="0.5"/>
+		<s:Image source="{SEARCH_ICON}" scaleMode="stretch" 
+				 smooth="true"
+				 width="{BasicUtil.getComponentHeight(43)}"
+				 height="{BasicUtil.getComponentHeight(44)}"/>
 		<s:Group height="100%" width="100%">
 			<s:RichEditableText id="textDisplay"
 								verticalAlign="middle"

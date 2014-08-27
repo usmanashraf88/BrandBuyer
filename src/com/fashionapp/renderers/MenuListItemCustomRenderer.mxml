@@ -3,6 +3,11 @@
 					xmlns:s="library://ns.adobe.com/flex/spark"
 					color="{currentState == 'selected'?0xffffff:0x000000}"
 					autoDrawBackground="false">
+	<fx:Script>
+		<![CDATA[
+			import com.fashionapp.utils.BasicUtil;
+		]]>
+	</fx:Script>
 	<s:states>
 		<s:State name="normal"/>
 		<s:State name="hovered"/>
@@ -16,7 +21,8 @@
 		</s:Rect>
 	</s:Group>
 	<s:Label text="{data.toString()}" 
-			 fontSize="14"
-			 width="100%" paddingLeft="25"
-			 paddingTop="20" paddingBottom="20"/>
+			 width="100%" paddingLeft="{BasicUtil.getComponentPadding(24)}"
+			 paddingTop="{BasicUtil.getComponentPadding(20)}" paddingBottom="{BasicUtil.getComponentPadding(20)}"
+			 styleName="viewheader"
+			 fontSize="{BasicUtil.getFontSize(26)}"/>
 </s:ItemRenderer>
