@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					xmlns:s="library://ns.adobe.com/flex/spark"
+					color="{currentState == 'selected'?0xffffff:0x000000}"
+					autoDrawBackground="false">
+	<fx:Script>
+		<![CDATA[
+			[Embed(source="assets/images/arrowwhite.png")]
+			[Bindable]
+			private var ARROW_WHITE:Class;
+			
+			[Embed(source="assets/images/arrowblack.png")]
+			[Bindable]
+			private var ARROW_BLACK:Class;
+			
+			[Embed(source="assets/images/sampleproduct.jpg")]
+			[Bindable]
+			private var PROD:Class;
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="hovered"/>
+		<s:State name="selected"/>
+	</s:states>
+	<s:BorderContainer height="100%" width="100%" borderVisible="false">
+	<s:Group height="100%" width="100%">
+		<s:Rect height="100%" width="100%">
+			<s:fill>
+				<s:SolidColor color="{currentState == 'selected'?0x000000:0xffffff}"/>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+		
+		<s:HGroup width="100%" paddingRight="15"
+				  verticalAlign="middle"
+				  paddingLeft="15">
+			<s:Image height="60" width="60" scaleMode="stretch" source="{PROD}"/>
+			<s:Spacer width="15"/>
+			<s:VGroup width="100%" gap="2">
+				<s:Label text="{data.brand}" 
+						 fontSize="14" fontWeight="bold"
+						 paddingTop="20" width="100%"/>
+				<s:HGroup width="100%" gap="2">
+					<s:Label text="{data.session}" 
+							 fontSize="14" fontWeight="bold"
+							 />
+					<s:Label text="{'| '+data.dept}" fontWeight="bold"
+							 fontSize="14"
+							  />
+				</s:HGroup>
+				<s:Label text="{data.productName}" 
+						 fontSize="14" fontWeight="bold"
+						 width="100%"/>
+				<s:Label text="{data.desc}" 
+						 fontSize="12"
+						 paddingTop="20" paddingBottom="5" width="100%"/>
+				<s:Label text="{data.title}" 
+						 fontSize="12"
+						 paddingBottom="0" width="100%"/>
+			</s:VGroup>
+			<s:Image source="{currentState=='selected'?ARROW_WHITE:ARROW_BLACK}"
+					 scaleX="0.5" scaleY="0.5" scaleZ="0.5"/>
+		</s:HGroup>
+	</s:BorderContainer>
+</s:ItemRenderer>

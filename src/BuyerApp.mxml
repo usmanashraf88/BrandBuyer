@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
 							xmlns:s="library://ns.adobe.com/flex/spark" 
-							firstView="com.brandbuyer.views.LoginView" applicationDPI="160" 
+							firstView="com.fashionapp.views.LoginView" applicationDPI="160"
 							initialize="viewnavigatorapplication1_initializeHandler(event)">
 	<fx:Script>
 		<![CDATA[
 	//http://stackoverflow.com/questions/10392469/connecting-flex-to-sqlite
-			import com.brandbuyer.model.BrandData;
-			import com.brandbuyer.util.Test;
+			import com.fashionapp.model.BrandData;
+			import com.fashionapp.util.Test;
 			
 			import mx.collections.ArrayCollection;
 			import mx.events.FlexEvent;

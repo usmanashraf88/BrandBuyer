@@ -27,7 +27,7 @@
 
     <fx:Script fb:purpose="styling">
         <![CDATA[         
-			import com.brandbuyer.views.MainMenuView;
+			import com.fashionapp.views.MainMenuView;
 			
 			import spark.components.View;
             /**
