@@ -1,5 +1,6 @@
 package com.fashionapp.model
 {
+	[Bindable]
 	public class LoginData
 	{
 		private var _id:int = 0;

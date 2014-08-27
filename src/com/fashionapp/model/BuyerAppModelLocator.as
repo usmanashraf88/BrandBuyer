@@ -21,7 +21,10 @@ package com.fashionapp.model
 		}
 		
 		[Bindable]
-		public var loginVo:LoginVO;
+		public var loginData:LoginData;
+		
+		[Bindable]
+		public var users:ArrayCollection = new ArrayCollection();
 		
 		public function FlexcasterModelLocator()
 		{

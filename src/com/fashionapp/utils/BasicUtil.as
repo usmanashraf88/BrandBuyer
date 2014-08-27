@@ -1,6 +1,7 @@
 package com.fashionapp.utils
 {
 	import mx.core.FlexGlobals;
+	import mx.formatters.DateFormatter;
 
 	[Bindable]
 	public class BasicUtil
@@ -28,6 +29,13 @@ package com.fashionapp.utils
 			var factor:Number = screenWidth/640;
 			padding = factor*padding;
 			return padding;
+		}
+		
+		public static function convertToSQLTimeStamp(date:Date):String {
+			var df:DateFormatter = new DateFormatter();
+			df.formatString = "YYYY-MM-DD-JJ-NN-SS";
+			var sqlTimeStamp:String = df.format(date);
+			return sqlTimeStamp;
 		}
 	}
 }

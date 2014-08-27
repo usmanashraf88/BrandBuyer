@@ -5,6 +5,7 @@
 				autoDrawBackground="false">
 	<fx:Script>
 		<![CDATA[
+			import com.fashionapp.model.LoginData;
 			import com.fashionapp.utils.BasicUtil;
 		]]>
 	</fx:Script>
@@ -23,7 +24,7 @@
 			<s:layout>
 				<s:VerticalLayout gap="0"/>
 			</s:layout>
-			<s:Label text="{data.toString()}" 
+			<s:Label text="{(data as LoginData).fullName}" 
 					 width="100%" paddingLeft="{BasicUtil.getComponentPadding(24)}"
 					 paddingTop="{BasicUtil.getComponentPadding(20)}" paddingBottom="{BasicUtil.getComponentPadding(20)}"
 					 styleName="viewheader"

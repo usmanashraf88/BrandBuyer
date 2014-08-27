@@ -5,10 +5,15 @@
 		xmlns:renderers="com.fashionapp.renderers.*"
 		actionBarVisible="false"
 		skinClass="assets.images.CustomViewWithBackButtonSkin"
-		creationComplete="view1_creationCompleteHandler(event)">
-	
+		creationComplete="view1_creationCompleteHandler(event)" xmlns:controllers="com.fashionapp.controllers.*">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<controllers:ChatViewController id="controller" view="{this}"/>
+	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
+			import com.fashionapp.model.ChatData;
+			import com.fashionapp.renderers.ToMessageRenderer;
 			import com.fashionapp.utils.BasicUtil;
 			
 			import spark.events.IndexChangeEvent;
@@ -17,7 +22,7 @@
 			private var NEW_BRAND_ICON:Class;
 			import mx.events.FlexEvent;
 			
-			
+			public var chat:ChatData;
 			
 			protected function button1_clickHandler(event:MouseEvent):void
 			{
@@ -28,6 +33,8 @@
 			protected function view1_creationCompleteHandler(event:FlexEvent):void
 			{
 				this.addEventListener('backClicked',onBackClick);
+				chat = data as ChatData;
+				trace((data as ChatData).toUserId +'||'+ (data as ChatData).createdBy);
 			}
 			
 			private function onBackClick(event:Event):void {
@@ -37,6 +44,18 @@
 			protected function list1_changeHandler(event:IndexChangeEvent):void
 			{
 				navigator.pushView(TakePhotoView);
+			}
+			
+			private function sendClick():void{
+				chat.content = txtMsg.text;
+				chat.createDate = BasicUtil.convertToSQLTimeStamp(new Date());
+				chat.type = "text";
+				chat.statusId = 0;
+				controller.send(chat);
+				txtMsg.text = '';
+				var toMsg:ToMessageRenderer = new ToMessageRenderer();
+				chatBox.addElement(toMsg);
+				toMsg.txtMsg.text = chat.content;
 			}
 			
 		]]>
@@ -61,17 +80,17 @@
 					 paddingLeft="{BasicUtil.getComponentPadding(10)}" paddingRight="{BasicUtil.getComponentPadding(10)}" 
 					 paddingTop="{BasicUtil.getComponentPadding(10)}" paddingBottom="{BasicUtil.getComponentPadding(10)}"/>
 		</s:Group>
-		<s:Group width="100%" height="100%">
+		<s:Group width="100%" height="100%" id="chatBox">
 			<s:Scroller height="100%" width="100%">
 				<s:Group width="100%">
 					<s:layout>
 						<s:VerticalLayout paddingLeft="{BasicUtil.getComponentPadding(30)}" 
 										  paddingRight="{BasicUtil.getComponentPadding(30)}"/>
 					</s:layout>
-					<renderers:FromMessageRenderer/>
+					<!--<renderers:FromMessageRenderer/>
 					<renderers:ToMessageRenderer/>
 					<renderers:ToMessageRenderer/>
-					<renderers:FromMessageRenderer/>
+					<renderers:FromMessageRenderer/>-->
 				</s:Group>	
 			</s:Scroller>
 			<s:BorderContainer id="menuList" visible="false" height="{BasicUtil.getComponentHeight(120)}" 
@@ -98,10 +117,10 @@
 					 height="{BasicUtil.getComponentHeight(36)}"
 					 width="{BasicUtil.getComponentHeight(36)}"
 					 click="button1_clickHandler(event)"/>
-			<s:TextInput width="100%" skinClass="com.fashionapp.skins.SendChatMessageTextInputSkin"
+			<s:TextInput id="txtMsg" width="100%" skinClass="com.fashionapp.skins.SendChatMessageTextInputSkin"
 						 styleName="viewtext"
 						 fontSize="{BasicUtil.getFontSize(34)}"/>
-			<s:Label text="{resourceManager.getString('resources','send')}" fontSize="{BasicUtil.getFontSize(34)}"
+			<s:Label text="{resourceManager.getString('resources','send')}" click="sendClick()" fontSize="{BasicUtil.getFontSize(34)}"
 					 styleName="viewtextitalic"/>
 		</s:HGroup>
 	</s:Group>

@@ -15,6 +15,7 @@ package com.fashionapp.controllers
 	import com.fashionapp.vo.LoginVO;
 	
 	import flash.events.MouseEvent;
+	import flash.filesystem.File;
 	import flash.net.URLVariables;
 	
 	import mx.core.FlexGlobals;
@@ -69,17 +70,18 @@ package com.fashionapp.controllers
 		public function doLogin(username:String,password:String):void 
 		{
 			//Temp open due to missing db file other wise comment
-			if(usernameValidator.validate().type == ValidationResultEvent.VALID && passwordValidator.validate().type == ValidationResultEvent.VALID) 
+			/*if(usernameValidator.validate().type == ValidationResultEvent.VALID && passwordValidator.validate().type == ValidationResultEvent.VALID) 
 			{
 				var loginVo:LoginVO = new LoginVO(username,password);
 				var loginEvent:LoginEvent = new LoginEvent(LoginEvent.LOGIN,loginVo,"");
 				CairngormEventDispatcher.getInstance().dispatchEvent(loginEvent);
 				
 				(view as LoginView).navigator.pushView(HomeView);
-			}
+			}*/
 			
 			// Code commented due to missing local db file//
-			/*var dl:DaoLogin = new DaoLogin();
+			var dl:DaoLogin = new DaoLogin();
+			//var file:File = File.applicationStorageDirectory;
 			if(Network.checkInterNetAvailability() == true){
 				var urlVariable:URLVariables  = new URLVariables;
 				urlVariable.username = (view as LoginView).txt_username.text;
@@ -88,7 +90,7 @@ package com.fashionapp.controllers
 				Network.call_API(view as LoginView,"http://smarttees.biz/build/products.php",urlVariable,"post");
 			}else{
 				dl.getLoginDataFromDB((view as LoginView).txt_username.text);
-			}*/
+			}
 		}
 		
 		//Usman I have commented this as this function is not used
