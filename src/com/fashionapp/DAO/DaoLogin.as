@@ -47,7 +47,7 @@ package com.fashionapp.DAO
 				
 				var result:SQLResult = stmt1.getResult();
 				if (result != null){
-					FlexGlobals.topLevelApplication.dispatchEvent(new LoginClickEvent('LoginClickEvent',Parser.parseLoginData(result)));
+					
 				}
 			}
 		}

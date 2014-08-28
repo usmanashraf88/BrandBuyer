@@ -2,6 +2,7 @@ package com.fashionapp.network
 {
 	import air.net.URLMonitor;
 	
+	import com.fashionapp.event.LoginClickEvent;
 	import com.fashionapp.model.LoginData;
 	import com.fashionapp.util.Test;
 	import com.fashionapp.util.Utils;
@@ -24,6 +25,7 @@ package com.fashionapp.network
 	import flash.net.URLRequestMethod;
 	import flash.net.URLVariables;
 	
+	import mx.core.FlexGlobals;
 	import mx.managers.CursorManager;
 	
 	public class Network
@@ -36,6 +38,20 @@ package com.fashionapp.network
 		private static var isOnline: Boolean = false;
 		private  var conn:SQLConnection;
 		private var insertLogin:SQLStatement;
+		
+		
+		public static function callLoginAPI(url:String):void{
+			CursorManager.setBusyCursor();
+			var myURLRequest:URLRequest = new URLRequest();
+			var myURLLoader:URLLoader = new URLLoader(); 
+			myURLRequest.method = URLRequestMethod.GET;
+			myURLRequest.url = "http://59.188.218.19/api/1-0/login/"+url;
+			myURLLoader.load(myURLRequest);
+			myURLLoader.addEventListener(IOErrorEvent.IO_ERROR,IOErrorHanlder);
+			myURLLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR,SECURITY_ERRORHanlder);
+			myURLLoader.addEventListener(Event.COMPLETE, loginComplete);
+		}
+		
 		
 		public static function call_API(parentObj:DisplayObject,url:String,
 										variables:URLVariables,method:String = "post"):void{
@@ -71,11 +87,8 @@ package com.fashionapp.network
 		}
 		/*******************************************************************/ 
 		private static function loginComplete(event:Event):void{
-			Alert.show(objParent,event.target.data);
-			//updateDataBase(Test.getDummyLoginData());
-			/*if(event.target.data == 'Image upload sucessfull'){
-				navigateToURL(new URLRequest('http://smarttees.biz/printing?get_cart_url=1'), "_self");
-			}*/
+			FlexGlobals.topLevelApplication.dispatchEvent(new LoginClickEvent('LoginClickEvent',event.target.data));
+			//Alert.show(objParent,event.target.data);
 			CursorManager.removeBusyCursor();
 		}
 		

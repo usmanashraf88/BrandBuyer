@@ -30,37 +30,19 @@
 			}
 			private function loginClickEventListener(event:LoginClickEvent):void
 			{
-				var ld:LoginData = new LoginData();
-				ld = event.loginDataObject;
-				if(ld.userName == txt_username.text){
-					navigator.pushView(MainMenuView);
-				}else{
-					Alert.show(this,"Please give correct username !");
-				}
+				trace(Utils.decrypt(event.results,Utils.key));
+				trace(Utils.decrypt(event.results,Utils.key));
+				//Alert.show(this,Utils.decrypt(event.results,Utils.key)); 
+				
 			}
 			/************************************************************************/
 			private function login():void {
-				var dl:DaoLogin = new DaoLogin();
-				if(Network.checkInterNetAvailability() == true){
-					var urlVariable:URLVariables  = new URLVariables;
-					urlVariable.username = txt_username.text;
-					urlVariable.password = txt_password.text;
-					urlVariable.type = "buyer";
-					Network.call_API(this,"http://smarttees.biz/build/products.php",urlVariable,"post");
+				if(txt_password.text == "" ||  txt_username.text == ""){
 				}else{
-					dl.getLoginDataFromDB(txt_username.text);
-				}
-			}
-			/************************************************************************/
-			protected function label1_clickHandler(event:MouseEvent):void
-			{
-				if(txt_username.text == ""){
-					Alert.show(this,"Please enter your email.");
-				}else{
-					var urlVariable:URLVariables  = new URLVariables;
-					urlVariable.email = Utils.FORGOT_EMAIL;
-					//Network.call_API(this,"http://smarttees.biz/build/products.php",urlVariable,"post");
-				}
+				//if(Network.checkInterNetAvailability() == true){
+					var str:String = "username="+txt_username.text+"&password="+"type=buyer";
+					Network.callLoginAPI(Utils.encrypt(str,Utils.key)); 
+				}				
 			}
 			/*************************************************************************************************/
 			
